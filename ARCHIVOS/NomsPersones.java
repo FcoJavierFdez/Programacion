@@ -14,7 +14,7 @@ import java.util.*;
  * de persona desitja
  * generar i a quin arxiu afegir-los (per exemple ‘usa_persones.txt’)
  */
-public class UF11_ExerciciB4 {
+public class NomsPersones {
 
     public static void main(String[] args) {
 

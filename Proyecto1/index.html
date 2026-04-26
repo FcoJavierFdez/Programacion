@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Flota</title>
+    <!-- Enlace al CSS -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <!-- CABECERA -->
+    <header>
+        <h1>Panel de Control: Flota de Vehículos</h1>
+        <p>Sistema interno de gestión y asignación de recursos móviles</p>
+    </header>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <!-- FORMULARIO -->
+        <section>
+            <h2>Registrar Nuevo Vehículo</h2>
+            <form>
+                <!-- Matrícula -->
+                <label>Matrícula del Vehículo:</label>
+                <input type="text" placeholder="Ej: 1234-XYZ">
+
+                <!-- Modelo -->
+                <label>Modelo y Marca:</label>
+                <input type="text" placeholder="Ej: SEAT Ibiza">
+
+                <!-- Departamento -->
+                <label>Asignar al Departamento:</label>
+                <select>
+                    <option>-- Seleccione un departamento --</option>
+                    <option>Ventas</option>
+                    <option>Logística</option>
+                    <option>Dirección</option>
+                </select>
+
+                <!-- Botón -->
+                <button>Guardar en la BD</button>
+            </form>
+        </section>
+
+        <!-- TABLA -->
+        <section>
+            <h2>Estado Actual de la Flota</h2>
+            <!-- Contenedor para encuadrar la tabla -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Matrícula</th>
+                            <th>Modelo</th>
+                            <th>Departamento</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1234-ABC</td>
+                            <td>SEAT Ibiza</td>
+                            <td>Ventas</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>5678-DEF</td>
+                            <td>FORD Transit</td>
+                            <td>Logística</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 - Proyecto I DAM Francisco Javier Fernández Fernández</p>
+    </footer>
+
+</body>
+
+</html>

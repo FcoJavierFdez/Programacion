@@ -37,6 +37,7 @@ public class ExploradorRutes {
     /**
      * Mostra informació sobre una ruta donada.
      * * @param ruta La ruta a analitzar en format de text.
+     * 
      * @throws FileNotFoundException Si la ruta no existeix en el sistema.
      */
     public static void mostraInfoRuta(String ruta) throws FileNotFoundException {
@@ -52,7 +53,7 @@ public class ExploradorRutes {
         // Si és un arxiu, mostrarà per pantalla el nom de l'arxiu
         if (f.isFile()) {
             System.out.println("[A] " + f.getName());
-        } 
+        }
         // Si és un directori, mostrarà la llista de directoris i arxius
         else if (f.isDirectory()) {
             File[] llista = f.listFiles(); // Retorna un vector amb tots els elements

@@ -5,16 +5,20 @@ package ARCHIVOS;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.io.*;
+
 /**
- * UF11 Exercici A5: Programa amb una funció boolean esborraTot(File f) que esborre f: Si no existeix
- * llança una excepció. Si és un arxiu l'esborra. Si és un directori, esborra primer els seus arxius i
- * després el propi directori (per a poder esborrar un directori ha d'estar buit). Retorna
+ * UF11 Exercici A5: Programa amb una funció boolean esborraTot(File f) que
+ * esborre f: Si no existeix
+ * llança una excepció. Si és un arxiu l'esborra. Si és un directori, esborra
+ * primer els seus arxius i
+ * després el propi directori (per a poder esborrar un directori ha d'estar
+ * buit). Retorna
  * ‘true’ si va poder esborrar el ‘File f’ (‘false’ si no ha sigut possible).
  */
 public class FuncionEsborraTot {
-    
+
     public static void main(String[] args) {
-    
+
         // Instanciem la clase File amb les rutes relatives de les carpetes a esborrar
         File fotografias = new File("Documentos/Fotografias");
         File libros = new File("Documentos/Libros");
@@ -48,23 +52,23 @@ public class FuncionEsborraTot {
 
     // Funció que esborra els arxius i les carpetes d'una ruta
     public static boolean esborraTot(File ruta) throws FileNotFoundException {
-        
-        boolean esborrat=false;
-        
+
+        boolean esborrat = false;
+
         // Si no existeix la ruta mostra una excepció
         if (!ruta.exists()) {
             throw new FileNotFoundException("La ruta introduïda no existeix.");
         } else {
             // Si és un arxiu l'esborra
             if (ruta.isFile()) {
-                esborrat=ruta.delete();
+                esborrat = ruta.delete();
             } else {
                 // Si és una carpeta primer esborra els seus arxius i després esborra la carpeta
                 if (ruta.isDirectory()) {
                     for (File f1 : ruta.listFiles()) {
                         f1.delete();
                     }
-                    esborrat=ruta.delete();
+                    esborrat = ruta.delete();
                 }
             }
         }

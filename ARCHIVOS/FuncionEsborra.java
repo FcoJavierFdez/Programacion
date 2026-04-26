@@ -10,7 +10,7 @@ import java.io.*;
  * després el propi directori. Si conté subdirectoris repetirà aquesta funció en cadascun d'ells. Retorna
  * ‘true’ si va poder esborrar el ‘File f’ (‘false’ si no ha sigut possible).
  */
-public class FuncionEsborraTotDos {
+public class FuncionEsborra {
     
     public static void main(String[] args) {
     

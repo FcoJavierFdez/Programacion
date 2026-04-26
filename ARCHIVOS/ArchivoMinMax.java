@@ -6,13 +6,15 @@ package ARCHIVOS;
  */
 import java.io.*;
 import java.util.*;
+
 /**
- * UF11 Exercici B1: Programa que mostra per pantalla els valors màxims i mínims de l'arxiu ‘numeros.txt’
+ * UF11 Exercici B1: Programa que mostra per pantalla els valors màxims i mínims
+ * de l'arxiu ‘numeros.txt’
  */
 public class ArchivoMinMax {
-    
-        public static void main(String[] args) {
-            
+
+    public static void main(String[] args) {
+
         // Declarem i inicialitzem les variables
         int maxim = Integer.MIN_VALUE;
         int minim = Integer.MAX_VALUE;
@@ -23,7 +25,7 @@ public class ArchivoMinMax {
             File f = new File("Documentos/numeros.txt");
             Scanner lector = new Scanner(f);
 
-            // Mentres queden elements anirem llgint els enters 
+            // Mentres queden elements anirem llgint els enters
             while (lector.hasNext()) {
                 numero = lector.nextInt();
 

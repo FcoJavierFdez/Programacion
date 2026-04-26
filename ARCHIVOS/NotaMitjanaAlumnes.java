@@ -7,14 +7,16 @@ package ARCHIVOS;
 
 import java.io.*;
 import java.util.*;
+
 /**
- * UF11 Exercici B2: Programa que mostra per pantalla la nota mitjana de cada alumne al costat del seu nom i cognom,
+ * UF11 Exercici B2: Programa que mostra per pantalla la nota mitjana de cada
+ * alumne al costat del seu nom i cognom,
  * ordenat per nota mitjana de major a menor.
  */
 public class NotaMitjanaAlumnes {
-    
-        public static void main(String[] args) {
-            
+
+    public static void main(String[] args) {
+
         try {
             // Intentem obrir l'arxiu
             File f = new File("Documentos/alumnos_notas.txt");
@@ -57,16 +59,16 @@ public class NotaMitjanaAlumnes {
 
             // Ordenem la llista en ordre descendent
             Collections.sort(alumnes, Collections.reverseOrder());
-            
+
             System.out.println("LLISTAT DE NOTES MITJANES DELS ALUMNES");
             System.out.println("--------------------------------------");
-            
+
             // Mostra primer alumnes amb un 10 de mitjana (si n'hi ha)
             for (String a : alumnes) {
                 if (a.split(" ")[0].equals("10.00"))
                     System.out.println(a);
             }
-            
+
             // Mostrem la resta d'alumnes
             for (String a : alumnes) {
                 if (!a.split(" ")[0].equals("10.00"))
@@ -79,5 +81,5 @@ public class NotaMitjanaAlumnes {
             System.out.println("Error: " + e);
         }
     }
-    
+
 }

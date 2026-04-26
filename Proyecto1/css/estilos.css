@@ -1,0 +1,197 @@
+/* Reset básico para evitar problemas de márgenes y tamaños */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Variables de colores */
+:root {
+    --oscuro: #1f2d3d;
+    --primario: #4aa3df;
+    --exito: #2ecc71;
+    --fondo: #eef2f5;
+    --texto: #333;
+}
+
+/* La página ocupa toda la altura */
+html, body {
+    height: 100%;
+}
+
+/* Configuración general */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    line-height: 1.6;
+    /* Flexbox para colocar el footer abajo */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabecera con imagen y capa oscura */
+header {
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('../img/coches.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+/* Título del header */
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Subtítulo del header */
+header p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Contenido principal */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1100px;
+    margin: -40px auto 20px auto;
+    padding: 0 15px;
+    /* Hace que empuje el footer hacia abajo */
+    flex: 1;
+}
+
+/* Secciones tipo tarjeta */
+section {
+    background: white;
+    padding: 55px; /* Más espacio interno */
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 300px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto al pasar el ratón */
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* Títulos */
+h2 {
+    color: var(--oscuro);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+/* Inputs y selects */
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Efecto al enfocar */
+input:focus,
+select:focus {
+    border-color: var(--primario);
+    outline: none;
+}
+
+/* Botón */
+button {
+    background-color: var(--primario);
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Hover del botón */
+button:hover {
+    background-color: #3b8fc4;
+}
+
+/* Foco del botón (accesibilidad) */
+button:focus {
+    outline: 2px solid var(--primario);
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+
+    /* Evita que la tabla toque los bordes */
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Sombra suave */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Cabecera de la tabla */
+th {
+    background-color: var(--primario);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: normal;
+}
+
+/* Celdas */
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Filas alternas */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover en filas */
+tbody tr:hover {
+    background-color: #eaf4fb;
+}
+
+/* Separación entre tablas si hay varias */
+table + table {
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--oscuro);
+    color: #ccc;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+/* Diseño responsive para móviles */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+}
