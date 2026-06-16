@@ -1,0 +1,50 @@
+package BASEDATOS;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ *
+ * @author ggarrido
+ */
+public class ConectionBD {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/uf12";
+        String username = "root";
+        String password = "";
+
+        try {
+
+            //Objecte Connection
+            Connection conn = DriverManager.getConnection(url, username, password);
+
+            //Creació de la query
+            Statement stmt = conn.createStatement();
+
+            //Creació del resultSet per a guardar el resultat de la query
+            ResultSet resultado = stmt.executeQuery("SELECT * FROM productos1");
+
+            //Recorrem el cursor
+            while (resultado.next()) {
+                System.out.println(resultado.getString("NOMBRE"));
+            }
+
+            /*
+            Si tinguérem una excepció, les sentències close() no s'executarien. 
+            Per a evitar això es deurien possar dins d'un finally.
+            */
+            resultado.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.err.println("Error al realitzar la consulta SQL: " + e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,10 @@
+com/restaurant/Comanda.class
+com/restaurant/Facturable.class
+com/restaurant/App.class
+com/restaurant/Beguda.class
+com/restaurant/Producte.class
+com/restaurant/Vegetaria.class
+com/restaurant/SenseEstocException.class
+com/restaurant/SenseGluten.class
+com/restaurant/PlatVegetaria.class
+com/restaurant/PlatPrincipal.class

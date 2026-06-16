@@ -1,0 +1,8 @@
+TICKET DE COMPRA
+
+Plat: Lasanya vegetal (V)
+Preu plat: 8,58
+Beguda: Orxata
+Preu beguda: 3,08
+
+Total: 11,66

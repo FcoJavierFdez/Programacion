@@ -1,0 +1,8 @@
+TICKET DE COMPRA
+
+Plat: Mandonguilles amb tomaca
+Preu plat: 10,45
+Beguda: Aigua amb gas
+Preu beguda: 1,65
+
+Total: 12,10

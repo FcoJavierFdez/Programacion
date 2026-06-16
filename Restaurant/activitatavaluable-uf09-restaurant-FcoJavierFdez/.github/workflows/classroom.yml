@@ -1,0 +1,131 @@
+name: Classroom Autograding
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  autograding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "11"
+          cache: maven
+
+      # BLOC 1: Herència i Abstracció (2 punts)
+      - name: Herencia i Abstraccio
+        id: herencia
+        uses: classroom-resources/autograding-command-grader@v1
+        if: always()
+        with:
+          test-name: "1. Herència i Abstracció"
+          command: "mvn -B -q test -Dtest=AppTest#test01_AbstraccioProducte,AppTest#test02_HerenciaClasses -DfailIfNoTests=false"
+          timeout: "10"
+          max-score: "2"
+
+      # BLOC 2: Interfícies i Marcadors (2 punts)
+      - name: Interficies i Marcadors
+        id: interficies
+        uses: classroom-resources/autograding-command-grader@v1
+        if: always()
+        with:
+          test-name: "2. Interfícies i Marcadors"
+          command: "mvn -B -q test -Dtest=AppTest#test03_DefinicioInterficies,AppTest#test04_ClassesAmbMarcadors -DfailIfNoTests=false"
+          timeout: "10"
+          max-score: "2"
+
+      # BLOC 3: Càlcul d'IVA (2 punts)
+      - name: Calcul d'IVA
+        id: iva
+        uses: classroom-resources/autograding-command-grader@v1
+        if: always()
+        with:
+          test-name: "3. Càlcul d'IVA"
+          command: "mvn -B -q test -Dtest=AppTest#test05_IvaPlatPrincipal_i_Vegetaria,AppTest#test06_IvaBeguda -DfailIfNoTests=false"
+          timeout: "10"
+          max-score: "2"
+
+      # BLOC 4: Gestió d'Excepcions (2 punts)
+      - name: Gestio Excepcions
+        id: excepcions
+        uses: classroom-resources/autograding-command-grader@v1
+        if: always()
+        with:
+          test-name: "4. Gestió d'Excepcions"
+          command: "mvn -B -q test -Dtest=AppTest#test07_EstructuraExcepcio,AppTest#test08_LlançamentExcepcio -DfailIfNoTests=false"
+          timeout: "10"
+          max-score: "2"
+
+      # BLOC 5: Polimorfisme i Lògica (2 punts)
+      - name: Polimorfisme
+        id: polimorfisme
+        uses: classroom-resources/autograding-command-grader@v1
+        if: always()
+        with:
+          test-name: "5. Polimorfisme i Lògica"
+          command: "mvn -B -q test -Dtest=AppTest#test09_PolimorfismeLlistaComanda -DfailIfNoTests=false"
+          timeout: "10"
+          max-score: "2"
+
+      # INFORME FINAL
+      - name: Report to Classroom
+        uses: classroom-resources/autograding-grading-reporter@v1
+        if: always()
+        env:
+          HERENCIA_RESULTS: "${{ steps.herencia.outputs.result }}"
+          INTERFICIES_RESULTS: "${{ steps.interficies.outputs.result }}"
+          IVA_RESULTS: "${{ steps.iva.outputs.result }}"
+          EXCEPCIONS_RESULTS: "${{ steps.excepcions.outputs.result }}"
+          POLIMORFISME_RESULTS: "${{ steps.polimorfisme.outputs.result }}"
+        with:
+          runners: herencia,interficies,iva,excepcions,polimorfisme
+          
+      # RESUMEN VISUAL BONITO (La tabla para los alumnos)
+      - name: Generar Resumen Visual
+        if: always()
+        run: |
+          NOTA=0
+          PASSATS=0      
+
+          if echo "${{ steps.herencia.outputs.result }}" | base64 -d | grep -q '"status":"pass"'; then
+              NOTA=$((NOTA+2));
+              PASSATS=$((PASSATS+1));
+          fi
+          if echo "${{ steps.interficies.outputs.result }}" | base64 -d | grep -q '"status":"pass"'; then
+              NOTA=$((NOTA+2));
+              PASSATS=$((PASSATS+1));
+          fi
+          if echo "${{ steps.iva.outputs.result }}" | base64 -d | grep -q '"status":"pass"'; then
+              NOTA=$((NOTA+2));
+              PASSATS=$((PASSATS+1));
+          fi
+          if echo "${{ steps.excepcions.outputs.result }}" | base64 -d | grep -q '"status":"pass"'; then
+              NOTA=$((NOTA+2));
+              PASSATS=$((PASSATS+1));
+          fi
+          if echo "${{ steps.polimorfisme.outputs.result }}" | base64 -d | grep -q '"status":"pass"'; then
+              NOTA=$((NOTA+2));
+              PASSATS=$((PASSATS+1));
+          fi
+        
+          
+          echo "## 📊 Resultats de l'Avaluació" >> $GITHUB_STEP_SUMMARY
+          echo "| Concepte | Valor |" >> $GITHUB_STEP_SUMMARY
+          echo "| :--- | :--- |" >> $GITHUB_STEP_SUMMARY
+          
+          echo "| Superats | ✅ $PASSATS / 5 blocs |" >> $GITHUB_STEP_SUMMARY
+          if [ "$PASSATS" -ne 5 ]; then 
+            echo "| No Superats | ❌ $((5 - PASSATS)) / 5 blocs |" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "| **Nota Final** | **$NOTA / 10** |" >> $GITHUB_STEP_SUMMARY
